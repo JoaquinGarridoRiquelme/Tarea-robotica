@@ -1,0 +1,469 @@
+#VRML_SIM R2023b utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/floors/protos/RectangleArena.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/robots/gctronic/e-puck/protos/E-puck.proto"
+
+WorldInfo {
+  info [
+    "Lab 2 - Scenario 3: Maze - complex labyrinth with multiple corridors and dead ends"
+    "ICI 4150 - Robotica y Sistemas Autonomos 2026-01"
+  ]
+  title "Lab2 - Escenario Laberinto (Complejo)"
+  basicTimeStep 64
+  contactProperties [
+    ContactProperties {
+      coulombFriction [
+        0.5
+      ]
+    }
+  ]
+}
+
+Viewpoint {
+  orientation -0.5773502691896258 0.5773502691896258 0.5773502691896258 2.0944
+  position 0 0 9.0
+}
+
+TexturedBackground {
+  texture "stadium"
+}
+
+TexturedBackgroundLight {
+}
+
+# Arena 5x5 (más grande que el escenario base 3x3)
+RectangleArena {
+  floorSize 5 5
+  floorTileSize 0.5 0.5
+  floorAppearance PBRAppearance {
+    baseColor 0.78 0.78 0.75
+    roughness 1
+    metalness 0
+  }
+  wallHeight 0.20
+}
+
+# ── Robot e-puck - Posición inicial: esquina inferior-izquierda ───────────────
+E-puck {
+  translation -2.0 -2.0 0
+  rotation 0 0 1 0.785
+  name "e-puck"
+  controller "lab2_controller"
+}
+
+# ══════════════════════════════════════════════════════════════════════════════
+#  ZONA OBJETIVO - marcador visual en la esquina superior-derecha
+# ══════════════════════════════════════════════════════════════════════════════
+
+DEF GOAL Solid {
+  translation 1.9 1.9 0.005
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.0 0.9 0.2
+        roughness 0.4
+        metalness 0.1
+        emissiveColor 0.0 0.4 0.05
+      }
+      geometry Box { size 0.25 0.25 0.01 }
+    }
+  ]
+  name "goal_marker"
+}
+
+# ══════════════════════════════════════════════════════════════════════════════
+#  BLOQUE DE MUROS - PASILLO HORIZONTAL 1 (zona sur)
+#  Crea un pasillo estrecho que separa la zona de inicio del área central
+# ══════════════════════════════════════════════════════════════════════════════
+
+DEF MH1_TOP Solid {
+  translation -0.5 -1.4 0.10
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.45 0.45 0.55 roughness 0.8 metalness 0 }
+      geometry Box { size 2.2 0.08 0.20 }
+    }
+  ]
+  name "mh1_top"
+  boundingObject Box { size 2.2 0.08 0.20 }
+  physics Physics { density -1 mass 5 }
+}
+
+DEF MH1_BOT Solid {
+  translation -0.5 -1.8 0.10
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.45 0.45 0.55 roughness 0.8 metalness 0 }
+      geometry Box { size 2.2 0.08 0.20 }
+    }
+  ]
+  name "mh1_bot"
+  boundingObject Box { size 2.2 0.08 0.20 }
+  physics Physics { density -1 mass 5 }
+}
+
+# Segmento derecho del pasillo H1 (cierra la salida derecha del pasillo)
+DEF MH1_RIGHT Solid {
+  translation 0.7 -1.6 0.10
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.45 0.45 0.55 roughness 0.8 metalness 0 }
+      geometry Box { size 0.08 0.48 0.20 }
+    }
+  ]
+  name "mh1_right"
+  boundingObject Box { size 0.08 0.48 0.20 }
+  physics Physics { density -1 mass 2 }
+}
+
+# ══════════════════════════════════════════════════════════════════════════════
+#  PASILLO VERTICAL 1 (columna central-izquierda)
+#  Pasillo norte-sur con apertura al norte
+# ══════════════════════════════════════════════════════════════════════════════
+
+DEF MV1_LEFT Solid {
+  translation -1.2 0.2 0.10
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.55 0.40 0.40 roughness 0.8 metalness 0 }
+      geometry Box { size 0.08 2.0 0.20 }
+    }
+  ]
+  name "mv1_left"
+  boundingObject Box { size 0.08 2.0 0.20 }
+  physics Physics { density -1 mass 5 }
+}
+
+DEF MV1_RIGHT Solid {
+  translation -0.8 0.2 0.10
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.55 0.40 0.40 roughness 0.8 metalness 0 }
+      geometry Box { size 0.08 2.0 0.20 }
+    }
+  ]
+  name "mv1_right"
+  boundingObject Box { size 0.08 2.0 0.20 }
+  physics Physics { density -1 mass 5 }
+}
+
+# Tope inferior del pasillo vertical (fondo cerrado, obliga a entrar por arriba)
+DEF MV1_BOT Solid {
+  translation -1.0 -0.85 0.10
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.55 0.40 0.40 roughness 0.8 metalness 0 }
+      geometry Box { size 0.48 0.08 0.20 }
+    }
+  ]
+  name "mv1_bot"
+  boundingObject Box { size 0.48 0.08 0.20 }
+  physics Physics { density -1 mass 2 }
+}
+
+# ══════════════════════════════════════════════════════════════════════════════
+#  PASILLO VERTICAL 2 (columna central-derecha)
+#  Genera un callejón sin salida al sur
+# ══════════════════════════════════════════════════════════════════════════════
+
+DEF MV2_LEFT Solid {
+  translation 0.2 -0.3 0.10
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.40 0.55 0.45 roughness 0.8 metalness 0 }
+      geometry Box { size 0.08 1.6 0.20 }
+    }
+  ]
+  name "mv2_left"
+  boundingObject Box { size 0.08 1.6 0.20 }
+  physics Physics { density -1 mass 5 }
+}
+
+DEF MV2_RIGHT Solid {
+  translation 0.6 -0.3 0.10
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.40 0.55 0.45 roughness 0.8 metalness 0 }
+      geometry Box { size 0.08 1.6 0.20 }
+    }
+  ]
+  name "mv2_right"
+  boundingObject Box { size 0.08 1.6 0.20 }
+  physics Physics { density -1 mass 5 }
+}
+
+# Tope superior (callejón sin salida)
+DEF MV2_TOP Solid {
+  translation 0.4 0.42 0.10
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.40 0.55 0.45 roughness 0.8 metalness 0 }
+      geometry Box { size 0.48 0.08 0.20 }
+    }
+  ]
+  name "mv2_top"
+  boundingObject Box { size 0.48 0.08 0.20 }
+  physics Physics { density -1 mass 2 }
+}
+
+# ══════════════════════════════════════════════════════════════════════════════
+#  PASILLO HORIZONTAL 2 (zona central-norte)
+#  Conecta la zona izquierda con la zona de la meta
+# ══════════════════════════════════════════════════════════════════════════════
+
+DEF MH2_BOT Solid {
+  translation 0.55 0.9 0.10
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.45 0.45 0.60 roughness 0.8 metalness 0 }
+      geometry Box { size 1.9 0.08 0.20 }
+    }
+  ]
+  name "mh2_bot"
+  boundingObject Box { size 1.9 0.08 0.20 }
+  physics Physics { density -1 mass 5 }
+}
+
+DEF MH2_TOP Solid {
+  translation 0.55 1.3 0.10
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.45 0.45 0.60 roughness 0.8 metalness 0 }
+      geometry Box { size 1.9 0.08 0.20 }
+    }
+  ]
+  name "mh2_top"
+  boundingObject Box { size 1.9 0.08 0.20 }
+  physics Physics { density -1 mass 5 }
+}
+
+# Cierre izquierdo del pasillo H2
+DEF MH2_LEFT Solid {
+  translation -0.42 1.1 0.10
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.45 0.45 0.60 roughness 0.8 metalness 0 }
+      geometry Box { size 0.08 0.48 0.20 }
+    }
+  ]
+  name "mh2_left"
+  boundingObject Box { size 0.08 0.48 0.20 }
+  physics Physics { density -1 mass 2 }
+}
+
+# ══════════════════════════════════════════════════════════════════════════════
+#  MURO EN L - zona noreste (protege la meta)
+# ══════════════════════════════════════════════════════════════════════════════
+
+DEF LWALL_H Solid {
+  translation 1.35 0.5 0.10
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.60 0.40 0.60 roughness 0.8 metalness 0 }
+      geometry Box { size 0.08 1.4 0.20 }
+    }
+  ]
+  name "lwall_h"
+  boundingObject Box { size 0.08 1.4 0.20 }
+  physics Physics { density -1 mass 4 }
+}
+
+DEF LWALL_V Solid {
+  translation 1.7 -0.22 0.10
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.60 0.40 0.60 roughness 0.8 metalness 0 }
+      geometry Box { size 0.78 0.08 0.20 }
+    }
+  ]
+  name "lwall_v"
+  boundingObject Box { size 0.78 0.08 0.20 }
+  physics Physics { density -1 mass 4 }
+}
+
+# ══════════════════════════════════════════════════════════════════════════════
+#  MURO DIAGONAL SIMULADO - bloque escalonado (zona suroeste)
+# ══════════════════════════════════════════════════════════════════════════════
+
+DEF DIAG1 Solid {
+  translation -1.8 -0.6 0.10
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.70 0.55 0.30 roughness 0.7 metalness 0 }
+      geometry Box { size 0.15 0.15 0.20 }
+    }
+  ]
+  name "diag1"
+  boundingObject Box { size 0.15 0.15 0.20 }
+  physics Physics { density -1 mass 0.5 }
+}
+
+DEF DIAG2 Solid {
+  translation -1.65 -0.45 0.10
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.70 0.55 0.30 roughness 0.7 metalness 0 }
+      geometry Box { size 0.15 0.15 0.20 }
+    }
+  ]
+  name "diag2"
+  boundingObject Box { size 0.15 0.15 0.20 }
+  physics Physics { density -1 mass 0.5 }
+}
+
+DEF DIAG3 Solid {
+  translation -1.50 -0.30 0.10
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.70 0.55 0.30 roughness 0.7 metalness 0 }
+      geometry Box { size 0.15 0.15 0.20 }
+    }
+  ]
+  name "diag3"
+  boundingObject Box { size 0.15 0.15 0.20 }
+  physics Physics { density -1 mass 0.5 }
+}
+
+# ══════════════════════════════════════════════════════════════════════════════
+#  OBSTÁCULOS DISPERSOS - cajas pequeñas con colores variados
+# ══════════════════════════════════════════════════════════════════════════════
+
+DEF OBS1 Solid {
+  translation -1.7 1.5 0.05
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.9 0.6 0.1 roughness 0.5 metalness 0 }
+      geometry Box { size 0.12 0.12 0.10 }
+    }
+  ]
+  name "obs1"
+  boundingObject Box { size 0.12 0.12 0.10 }
+  physics Physics { density -1 mass 0.3 }
+}
+
+DEF OBS2 Solid {
+  translation -0.5 1.8 0.05
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.1 0.7 0.5 roughness 0.5 metalness 0 }
+      geometry Box { size 0.12 0.12 0.10 }
+    }
+  ]
+  name "obs2"
+  boundingObject Box { size 0.12 0.12 0.10 }
+  physics Physics { density -1 mass 0.3 }
+}
+
+DEF OBS3 Solid {
+  translation 1.6 -1.6 0.05
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.6 0.1 0.8 roughness 0.5 metalness 0 }
+      geometry Box { size 0.12 0.12 0.10 }
+    }
+  ]
+  name "obs3"
+  boundingObject Box { size 0.12 0.12 0.10 }
+  physics Physics { density -1 mass 0.3 }
+}
+
+DEF OBS4 Solid {
+  translation 0.0 -2.1 0.05
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.3 0.3 0.9 roughness 0.5 metalness 0 }
+      geometry Box { size 0.12 0.12 0.10 }
+    }
+  ]
+  name "obs4"
+  boundingObject Box { size 0.12 0.12 0.10 }
+  physics Physics { density -1 mass 0.3 }
+}
+
+DEF OBS5 Solid {
+  translation 2.0 0.5 0.05
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.9 0.2 0.2 roughness 0.5 metalness 0 }
+      geometry Box { size 0.12 0.12 0.10 }
+    }
+  ]
+  name "obs5"
+  boundingObject Box { size 0.12 0.12 0.10 }
+  physics Physics { density -1 mass 0.3 }
+}
+
+DEF OBS6 Solid {
+  translation -2.1 1.0 0.05
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.2 0.8 0.9 roughness 0.5 metalness 0 }
+      geometry Box { size 0.12 0.12 0.10 }
+    }
+  ]
+  name "obs6"
+  boundingObject Box { size 0.12 0.12 0.10 }
+  physics Physics { density -1 mass 0.3 }
+}
+
+# ══════════════════════════════════════════════════════════════════════════════
+#  OBSTÁCULOS CILÍNDRICOS - variedad de geometría
+# ══════════════════════════════════════════════════════════════════════════════
+
+DEF CYL1 Solid {
+  translation 1.5 -0.8 0.08
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.8 0.8 0.2 roughness 0.4 metalness 0.2 }
+      geometry Cylinder { radius 0.06 height 0.16 }
+    }
+  ]
+  name "cyl1"
+  boundingObject Cylinder { radius 0.06 height 0.16 }
+  physics Physics { density -1 mass 0.4 }
+}
+
+DEF CYL2 Solid {
+  translation -1.5 -1.2 0.08
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.2 0.6 0.8 roughness 0.4 metalness 0.2 }
+      geometry Cylinder { radius 0.06 height 0.16 }
+    }
+  ]
+  name "cyl2"
+  boundingObject Cylinder { radius 0.06 height 0.16 }
+  physics Physics { density -1 mass 0.4 }
+}
+
+DEF CYL3 Solid {
+  translation 0.9 1.7 0.08
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.9 0.4 0.6 roughness 0.4 metalness 0.2 }
+      geometry Cylinder { radius 0.06 height 0.16 }
+    }
+  ]
+  name "cyl3"
+  boundingObject Cylinder { radius 0.06 height 0.16 }
+  physics Physics { density -1 mass 0.4 }
+}
+
+# ══════════════════════════════════════════════════════════════════════════════
+#  PILAR CENTRAL - obstáculo grande en el cruce principal
+# ══════════════════════════════════════════════════════════════════════════════
+
+DEF PILLAR Solid {
+  translation -0.05 -0.05 0.12
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.3 0.3 0.35 roughness 0.9 metalness 0.1 }
+      geometry Box { size 0.22 0.22 0.24 }
+    }
+  ]
+  name "pillar_central"
+  boundingObject Box { size 0.22 0.22 0.24 }
+  physics Physics { density -1 mass 3 }
+}

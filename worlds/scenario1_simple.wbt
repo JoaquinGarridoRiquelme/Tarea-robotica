@@ -1,0 +1,131 @@
+#VRML_SIM R2023b utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/floors/protos/RectangleArena.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/robots/gctronic/e-puck/protos/E-puck.proto"
+
+WorldInfo {
+  info [
+    "Lab 2 - Scenario 1: Simple obstacles"
+    "ICI 4150 - Robotica y Sistemas Autonomos 2026-01"
+  ]
+  title "Lab2 - Escenario Simple"
+  basicTimeStep 64
+  contactProperties [
+    ContactProperties {
+      coulombFriction [
+        0.5
+      ]
+    }
+  ]
+}
+
+Viewpoint {
+  orientation -0.5773502691896258 0.5773502691896258 0.5773502691896258 2.0944
+  position 0 0 3.5
+}
+
+TexturedBackground {
+}
+
+TexturedBackgroundLight {
+}
+
+RectangleArena {
+  floorSize 2 2
+  floorTileSize 0.5 0.5
+  floorAppearance PBRAppearance {
+    baseColor 0.9 0.9 0.9
+    roughness 1
+    metalness 0
+  }
+  wallHeight 0.1
+}
+
+# ── Robot e-puck ─────────────────────────────
+E-puck {
+  translation 0 0 0
+  rotation 0 0 1 0
+  name "e-puck"
+  controller "lab2_controller"
+  groundSensorsSlot [
+  ]
+}
+
+# ── Obstáculos simples (cajas) ───────────────
+
+# Obstáculo 1 - frente
+DEF BOX1 Solid {
+  translation 0 0.5 0.05
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.8 0.2 0.2
+        roughness 0.5
+        metalness 0
+      }
+      geometry Box {
+        size 0.15 0.15 0.1
+      }
+    }
+  ]
+  name "obstacle1"
+  boundingObject Box {
+    size 0.15 0.15 0.1
+  }
+  physics Physics {
+    density -1
+    mass 0.5
+  }
+}
+
+# Obstáculo 2 - izquierda
+DEF BOX2 Solid {
+  translation -0.4 0.3 0.05
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.2 0.5 0.8
+        roughness 0.5
+        metalness 0
+      }
+      geometry Box {
+        size 0.15 0.15 0.1
+      }
+    }
+  ]
+  name "obstacle2"
+  boundingObject Box {
+    size 0.15 0.15 0.1
+  }
+  physics Physics {
+    density -1
+    mass 0.5
+  }
+}
+
+# Obstáculo 3 - derecha
+DEF BOX3 Solid {
+  translation 0.4 0.4 0.05
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.2 0.8 0.3
+        roughness 0.5
+        metalness 0
+      }
+      geometry Box {
+        size 0.15 0.15 0.1
+      }
+    }
+  ]
+  name "obstacle3"
+  boundingObject Box {
+    size 0.15 0.15 0.1
+  }
+  physics Physics {
+    density -1
+    mass 0.5
+  }
+}

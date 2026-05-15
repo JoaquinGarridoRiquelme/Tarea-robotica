@@ -2,7 +2,10 @@
 
 **Asignatura:** ICI 4150 – Robótica y Sistemas Autónomos 2026-01  
 **Laboratorio:** Nº 2  
-
+**Integrantes / RUT:**
+*   Benjamín Gómez Beltrán - [21.039.315-3]
+*   Joaquín Garrido Riquelme - [20.882.540-2]
+*   Pablo Aguilera Tapia - [21.712.853-6]
 ---
 
 ## Tabla de contenidos

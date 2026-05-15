@@ -6,6 +6,8 @@
 *   Benjamín Gómez Beltrán - [21.039.315-3]
 *   Joaquín Garrido Riquelme - [20.882.540-2]
 *   Pablo Aguilera Tapia - [21.712.853-6]
+*   Cristian Mejias Pino - [18.654.182-0]
+*   Cristobal Rubilar Vicencio - [21.711.065-3]
 ---
 
 ## Tabla de contenidos

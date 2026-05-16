@@ -1,4 +1,4 @@
-#VRML_SIM R2023b utf8
+#VRML_SIM R2025a utf8
 
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackground.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
@@ -20,21 +20,16 @@ WorldInfo {
     }
   ]
 }
-
 Viewpoint {
   orientation -0.5773502691896258 0.5773502691896258 0.5773502691896258 2.0944
   position 0 0 4.5
 }
-
 TexturedBackground {
 }
-
 TexturedBackgroundLight {
 }
-
 RectangleArena {
   floorSize 3 3
-  floorTileSize 0.5 0.5
   floorAppearance PBRAppearance {
     baseColor 0.85 0.85 0.85
     roughness 1
@@ -42,129 +37,227 @@ RectangleArena {
   }
   wallHeight 0.15
 }
-
-# ── Robot e-puck ─────────────────────────────
 E-puck {
-  translation -1 -1 0
-  rotation 0 0 1 0.785
-  name "e-puck"
+  hidden position_0_0 10.223962842620937
+  hidden position_0_1 14.21454556584057
+  hidden linearVelocity_0 0.02261793905927382 0.04119475501558297 -0.0005067642804085526
+  hidden angularVelocity_0 -0.009388326915801586 -0.017231683309936123 -1.4120605407144238
+  hidden rotation_1 0 -1 0 2.342407771738236
+  hidden linearVelocity_1 0.03809357147190159 0.0684423060299172 -0.00022781218043744388
+  hidden angularVelocity_1 -3.500201171181639 1.943064297849975 -1.3984192021934683
+  hidden rotation_2 0 0.9999999999999999 0 1.6481749514813973
+  hidden linearVelocity_2 0.0036410136371323974 0.009253973708324752 0.00021366327261206032
+  hidden angularVelocity_2 -3.5903162401070152 1.7649889067827058 -1.3654097598592743
+  translation -0.48161656129976277 -0.4792624845869107 -0.0001281597947630532
+  rotation 0.003869816957618893 0.002004670285409045 0.9999905028617828 1.0111126399193515
   controller "lab2_controller"
-  extensionSlot [
-  ]
+  window "<generic>"
 }
-
-# ═════════════════════════════════════════════
-#  Pasillo 1 - horizontal (columnas izquierda)
-# ═════════════════════════════════════════════
-
 DEF WALL_H1A Solid {
-  translation -0.8 0 0.075
+  translation -0.8 5.43466369387841e-19 0.07344091006262174
+  rotation -3.647854128958633e-17 0.9988104225176095 0.04876207409651887 1.4178548689791301e-16
   children [
     Shape {
-      appearance PBRAppearance { baseColor 0.5 0.5 0.6 roughness 0.8 metalness 0 }
-      geometry Box { size 0.08 1.2 0.15 }
+      appearance PBRAppearance {
+        baseColor 0.5 0.5 0.6
+        roughness 0.8
+        metalness 0
+      }
+      geometry Box {
+        size 0.08 1.2 0.15
+      }
     }
   ]
   name "wall_h1a"
-  boundingObject Box { size 0.08 1.2 0.15 }
-  physics Physics { density -1 mass 2 }
+  boundingObject Box {
+    size 0.08 1.2 0.15
+  }
+  physics Physics {
+    density -1
+    mass 2
+  }
+  linearVelocity -2.296294274070122e-16 5.1504660303269826e-18 -4.115565630445397e-05
+  angularVelocity 7.395570986446986e-32 -2.950350459903531e-15 1.7859556176474233e-18
 }
-
 DEF WALL_H1B Solid {
-  translation -0.4 0 0.075
+  translation -0.4 7.88623156169309e-18 0.07344091006262173
+  rotation -0.048534911720608725 0.997804940622916 -0.04505177924091392 3.075114537300383e-16
   children [
     Shape {
-      appearance PBRAppearance { baseColor 0.5 0.5 0.6 roughness 0.8 metalness 0 }
-      geometry Box { size 0.08 1.2 0.15 }
+      appearance PBRAppearance {
+        baseColor 0.5 0.5 0.6
+        roughness 0.8
+        metalness 0
+      }
+      geometry Box {
+        size 0.08 1.2 0.15
+      }
     }
   ]
   name "wall_h1b"
-  boundingObject Box { size 0.08 1.2 0.15 }
-  physics Physics { density -1 mass 2 }
+  boundingObject Box {
+    size 0.08 1.2 0.15
+  }
+  physics Physics {
+    density -1
+    mass 2
+  }
+  linearVelocity -8.300212544079677e-17 7.843539378036204e-18 -4.115565630456779e-05
+  angularVelocity -1.749028272640247e-16 -5.531907112319121e-16 -5.893882936409904e-18
 }
-
-# ═════════════════════════════════════════════
-#  Pasillo 2 - vertical (fila superior)
-# ═════════════════════════════════════════════
-
 DEF WALL_V2A Solid {
-  translation 0.4 0.6 0.075
+  translation 0.4 0.6 0.0734409100626217
+  rotation 0.9466889000624923 -0.32108724747351547 -0.026136296760445252 9.972781418550643e-17
   children [
     Shape {
-      appearance PBRAppearance { baseColor 0.6 0.4 0.4 roughness 0.8 metalness 0 }
-      geometry Box { size 1.0 0.08 0.15 }
+      appearance PBRAppearance {
+        baseColor 0.6 0.4 0.4
+        roughness 0.8
+        metalness 0
+      }
+      geometry Box {
+        size 1 0.08 0.15
+      }
     }
   ]
   name "wall_v2a"
-  boundingObject Box { size 1.0 0.08 0.15 }
-  physics Physics { density -1 mass 2 }
+  boundingObject Box {
+    size 1 0.08 0.15
+  }
+  physics Physics {
+    density -1
+    mass 2
+  }
+  linearVelocity 2.136642708563352e-17 -8.346689893963291e-17 -4.11556563046814e-05
+  angularVelocity 5.531907112319122e-16 1.6677775704882548e-16 -2.0135784882238068e-17
 }
-
 DEF WALL_V2B Solid {
-  translation 0.4 0.2 0.075
+  translation 0.4 0.19999999999999998 0.07344091006262173
+  rotation 0.9954539992699964 -0.0643098748532942 0.07025364996726799 1.6597414433590983e-16
   children [
     Shape {
-      appearance PBRAppearance { baseColor 0.6 0.4 0.4 roughness 0.8 metalness 0 }
-      geometry Box { size 1.0 0.08 0.15 }
+      appearance PBRAppearance {
+        baseColor 0.6 0.4 0.4
+        roughness 0.8
+        metalness 0
+      }
+      geometry Box {
+        size 1 0.08 0.15
+      }
     }
   ]
   name "wall_v2b"
-  boundingObject Box { size 1.0 0.08 0.15 }
-  physics Physics { density -1 mass 2 }
+  boundingObject Box {
+    size 1 0.08 0.15
+  }
+  physics Physics {
+    density -1
+    mass 2
+  }
+  linearVelocity 1.7458538103348769e-19 9.425056641860081e-17 -4.1155656304567734e-05
+  angularVelocity 3.68793807487941e-16 -1.243724183241704e-31 1.985473570500007e-17
 }
-
-# ═════════════════════════════════════════════
-#  Obstáculos dispersos adicionales
-# ═════════════════════════════════════════════
-
 DEF OBS1 Solid {
-  translation 0.9 -0.5 0.05
+  translation 0.9 -0.5 0.049766136674278254
+  rotation -0.5047405478115726 0.8412342463526173 0.19380898368862456 2.769321772227319e-16
   children [
     Shape {
-      appearance PBRAppearance { baseColor 0.9 0.6 0.1 roughness 0.5 metalness 0 }
-      geometry Box { size 0.12 0.12 0.1 }
+      appearance PBRAppearance {
+        baseColor 0.9 0.6 0.1
+        roughness 0.5
+        metalness 0
+      }
+      geometry Box {
+        size 0.12 0.12 0.1
+      }
     }
   ]
   name "obs1"
-  boundingObject Box { size 0.12 0.12 0.1 }
-  physics Physics { density -1 mass 0.3 }
+  boundingObject Box {
+    size 0.12 0.12 0.1
+  }
+  physics Physics {
+    density -1
+    mass 0.3
+  }
+  linearVelocity 1.331778287094138e-16 -1.236594096864095e-17 -6.161141003246974e-06
+  angularVelocity -4.930380657631324e-31 2.9120603924594267e-15 1.2639133016056872e-16
 }
-
 DEF OBS2 Solid {
-  translation -0.1 0.9 0.05
+  translation -0.09999999999999998 0.9 0.0497661366742782
+  rotation 0.4472040036312608 -0.8944080072625159 0.00654947943475163 2.0837454897997254e-16
   children [
     Shape {
-      appearance PBRAppearance { baseColor 0.1 0.7 0.5 roughness 0.5 metalness 0 }
-      geometry Box { size 0.12 0.12 0.1 }
+      appearance PBRAppearance {
+        baseColor 0.1 0.7 0.5
+        roughness 0.5
+        metalness 0
+      }
+      geometry Box {
+        size 0.12 0.12 0.1
+      }
     }
   ]
   name "obs2"
-  boundingObject Box { size 0.12 0.12 0.1 }
-  physics Physics { density -1 mass 0.3 }
+  boundingObject Box {
+    size 0.12 0.12 0.1
+  }
+  physics Physics {
+    density -1
+    mass 0.3
+  }
+  linearVelocity -4.8589678293586676e-17 5.1732910346010045e-17 -6.161141003246919e-06
+  angularVelocity -7.280150981148564e-16 -1.0920226471722848e-15 -3.426102016388654e-16
 }
-
 DEF OBS3 Solid {
-  translation 1.1 0.9 0.05
+  translation 1.1 0.9 0.04976613667427821
+  rotation -0.6424678518236254 0.7495458271275651 0.15942431561336592 4.351311849808328e-16
   children [
     Shape {
-      appearance PBRAppearance { baseColor 0.6 0.1 0.8 roughness 0.5 metalness 0 }
-      geometry Box { size 0.12 0.12 0.1 }
+      appearance PBRAppearance {
+        baseColor 0.6 0.1 0.8
+        roughness 0.5
+        metalness 0
+      }
+      geometry Box {
+        size 0.12 0.12 0.1
+      }
     }
   ]
   name "obs3"
-  boundingObject Box { size 0.12 0.12 0.1 }
-  physics Physics { density -1 mass 0.3 }
+  boundingObject Box {
+    size 0.12 0.12 0.1
+  }
+  physics Physics {
+    density -1
+    mass 0.3
+  }
+  linearVelocity 6.782553108423799e-17 -4.991633990288514e-17 -6.1611410033416905e-06
+  angularVelocity 8.7938363816307e-31 1.4560301962297135e-15 2.4895097074847996e-16
 }
-
 DEF OBS4 Solid {
-  translation -0.9 0.7 0.05
+  translation -0.9 0.7 0.04976613667427819
+  rotation -0.8873521764273179 -0.2957840588091058 -0.3537200949113772 3.1504717642285902e-16
   children [
     Shape {
-      appearance PBRAppearance { baseColor 0.3 0.3 0.9 roughness 0.5 metalness 0 }
-      geometry Box { size 0.12 0.12 0.1 }
+      appearance PBRAppearance {
+        baseColor 0.3 0.3 0.9
+        roughness 0.5
+        metalness 0
+      }
+      geometry Box {
+        size 0.12 0.12 0.1
+      }
     }
   ]
   name "obs4"
-  boundingObject Box { size 0.12 0.12 0.1 }
-  physics Physics { density -1 mass 0.3 }
+  boundingObject Box {
+    size 0.12 0.12 0.1
+  }
+  physics Physics {
+    density -1
+    mass 0.3
+  }
+  linearVelocity 7.58149760222467e-18 4.3360591049649195e-17 -6.1611410033416515e-06
+  angularVelocity -2.18404529434457e-15 3.640075490574283e-16 -3.868663878152537e-16
 }

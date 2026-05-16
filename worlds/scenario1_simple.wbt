@@ -1,4 +1,4 @@
-#VRML_SIM R2023b utf8
+#VRML_SIM R2025a utf8
 
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackground.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
@@ -20,46 +20,41 @@ WorldInfo {
     }
   ]
 }
-
 Viewpoint {
   orientation -0.5773502691896258 0.5773502691896258 0.5773502691896258 2.0944
   position 0 0 3.5
 }
-
 TexturedBackground {
 }
-
 TexturedBackgroundLight {
 }
-
 RectangleArena {
   floorSize 2 2
-  floorTileSize 0.5 0.5
   floorAppearance PBRAppearance {
     baseColor 0.9 0.9 0.9
     roughness 1
     metalness 0
   }
-  wallHeight 0.1
 }
-
-# ── Robot e-puck ─────────────────────────────
 E-puck {
-  translation 0 0 0
-  rotation 0 0 1 0
-  name "e-puck"
+  hidden position_0_0 7.1577176430015825
+  hidden position_0_1 6.591396399786733
+  hidden linearVelocity_0 -8.420160701351901e-05 -0.07978632807733703 0.0002085956488925605
+  hidden angularVelocity_0 8.78243226802095e-05 -0.0011458900772611303 0.0021032872949936516
+  hidden rotation_1 0 -1 0 5.408652971357591
+  hidden linearVelocity_1 -0.00012057464177127919 -0.07972825260330436 0.00015914570222991866
+  hidden angularVelocity_1 3.986654149655179 0.32638087711875785 0.006010596989125109
+  hidden rotation_2 0 -1 0 5.97497421457244
+  hidden linearVelocity_2 -6.827852514053982e-05 -0.07972719843095234 0.00016113981439965386
+  hidden angularVelocity_2 3.9865060315422802 0.3282057247978746 0.003927622187573778
+  translation 0.9631740050899401 -0.1212498144272021 -0.00015628453507041985
+  rotation 0.0003376643537811167 -0.0006500514213591523 -0.999999731707931 1.4886924692709134
   controller "lab2_controller"
-  extensionSlot [
-  ]
-  groundSensorsSlot [
-  ]
+  window "<generic>"
 }
-
-# ── Obstáculos simples (cajas) ───────────────
-
-# Obstáculo 1 - frente
 DEF BOX1 Solid {
-  translation 0 0.5 0.05
+  translation 7.491441838639825e-18 0.5 0.049610227762986035
+  rotation 0.6779973476640332 0.5084980107480238 -0.5308006872884007 2.4765098971547356e-16
   children [
     Shape {
       appearance PBRAppearance {
@@ -80,11 +75,12 @@ DEF BOX1 Solid {
     density -1
     mass 0.5
   }
+  linearVelocity 8.781064086610143e-17 1.2194430062366493e-16 -1.0270971898762631e-05
+  angularVelocity -1.6397140056002305e-15 1.6397140056002305e-15 -6.121059535862115e-17
 }
-
-# Obstáculo 2 - izquierda
 DEF BOX2 Solid {
-  translation -0.4 0.3 0.05
+  translation -0.4 0.3 0.049610227762986014
+  rotation 0.5756755210183236 0.287837760509163 0.7653411775968619 1.458345092357324e-16
   children [
     Shape {
       appearance PBRAppearance {
@@ -105,11 +101,12 @@ DEF BOX2 Solid {
     density -1
     mass 0.5
   }
+  linearVelocity -3.656203238187042e-17 -6.663338827896668e-17 -1.0270971898762565e-05
+  angularVelocity 9.838284033601386e-16 -9.838284033601384e-16 -4.1921731583993534e-17
 }
-
-# Obstáculo 3 - derecha
 DEF BOX3 Solid {
-  translation 0.4 0.4 0.05
+  translation 0.4 0.4 0.049610227762986014
+  rotation 0.5756755210183236 0.287837760509163 0.7653411775968619 1.458345092357324e-16
   children [
     Shape {
       appearance PBRAppearance {
@@ -130,4 +127,6 @@ DEF BOX3 Solid {
     density -1
     mass 0.5
   }
+  linearVelocity -3.656203238187042e-17 -6.663338827896668e-17 -1.0270971898762565e-05
+  angularVelocity 9.838284033601386e-16 -9.838284033601384e-16 -4.1921731583993534e-17
 }

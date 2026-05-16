@@ -49,6 +49,8 @@ E-puck {
   rotation 0 0 1 0
   name "e-puck"
   controller "lab2_controller"
+  extensionSlot [
+  ]
   groundSensorsSlot [
   ]
 }

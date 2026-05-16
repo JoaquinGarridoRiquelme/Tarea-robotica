@@ -51,6 +51,8 @@ E-puck {
   rotation 0 0 1 0.785
   name "e-puck"
   controller "lab2_controller"
+  extensionSlot [
+  ]
 }
 
 # ══════════════════════════════════════════════════════════════════════════════
